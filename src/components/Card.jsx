@@ -42,7 +42,7 @@ const Card = ({ searchQuery }) => {
         const result = await GetPokemon(300);
         setPokemonData(result);
         setVisiblePokemon(result.slice(0, visiblePokemonCount));
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.error("Error fetching Pokémon data:", error);
       }
