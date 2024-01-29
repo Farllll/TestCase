@@ -25,7 +25,7 @@ function Search({ onSearch }) {
     <div className="flex justify-center mt-5">
       <input
         type="text"
-        placeholder="Cari Pokemon"
+        placeholder="Search Pokemon"
         className="input border-gray-500 rounded-tl-[20px] rounded-bl-[20px] rounded-br-none rounded-tr-none w-full max-w-xs focus:outline-none"
         value={searchQuery}
         onChange={handleSearchChange}

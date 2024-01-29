@@ -150,7 +150,7 @@ const Card = ({ searchQuery }) => {
                     type="text"
                     name=""
                     id=""
-                    placeholder="contoh: Mamat Gunshop"
+                    placeholder="e.g Mamat Gunshop"
                     className="input input-bordered w-full bg-gray-100 mt-2 focus:outline-none"
                     value={aliasInput}
                     onChange={(e) => setAliasInput(e.target.value)}
