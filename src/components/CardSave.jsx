@@ -58,18 +58,18 @@ const CardSave = () => {
               <h2 className="card-title justify-center font-bold">
                 {content.alias}
               </h2>
-              <p className="text-gray-400 text-sm font-bold">
+              <p className="text-gray-400 text-sm font-semibold">
                 Height:{" "}
                 <span className="text-black">{content.height / 10} m</span>
               </p>
-              <p className="text-gray-400 text-sm font-bold">
+              <p className="text-gray-400 text-sm font-semibold">
                 Weight:{" "}
                 <span className="text-black">{content.weight / 10} Kg</span>
               </p>
               <ul className="flex gap-2">
                 {content.types.map((type, index) => (
                   <li
-                    className="badge font-bold text-white text-center h-5 text-xs rounded-2xl"
+                    className="badge font-bold text-white text-center h-8 text-1xl rounded-mdbadge font-bold text-white text-center h-8 text-1xl rounded-md"
                     key={index}
                     style={{
                       backgroundColor:
