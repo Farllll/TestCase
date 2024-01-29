@@ -69,7 +69,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/"
-              className="text-black hover:text-red-700"
+              className="text-black hover:bg-[#a83944]"
               onClick={() => setMenuOpen(false)}
             >
               Home
@@ -78,7 +78,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/saved"
-              className="text-black hover:text-red-700"
+              className="text-black hover:bg-[#a83944]"
               onClick={() => setMenuOpen(false)}
             >
               Saved

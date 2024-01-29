@@ -144,23 +144,29 @@ const Card = ({ searchQuery }) => {
               <dialog id="my_modal_2" className="modal">
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">
-                    Give a nickname to Pokemon!
+                    Give a nickname to Pokemon! 
                   </h3>
                   <input
                     type="text"
                     name=""
                     id=""
-                    placeholder="e.g. Mamat Gunshop"
+                    placeholder="contoh: Mamat Gunshop"
                     className="input input-bordered w-full bg-gray-100 mt-2 focus:outline-none"
                     value={aliasInput}
                     onChange={(e) => setAliasInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault(); 
+                        handleSavePokemon();
+                      }
+                    }}
                   />
                   <form method="dialog">
                     <button
                       className="w-full bg-[#f55464] hover:bg-[#a83944] btn mt-5 text-white"
                       onClick={handleSavePokemon}
                     >
-                      Save Pokemon
+                      Saved Pokemon
                     </button>
                   </form>
                 </div>
@@ -168,6 +174,7 @@ const Card = ({ searchQuery }) => {
                   <button></button>
                 </form>
               </dialog>
+
             </div>
           </div>
         ))}
