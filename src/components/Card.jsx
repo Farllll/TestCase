@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetPokemon } from "../api";
 import { usePokemonContext } from "../context/PokemonContext";
-import Filter from './filter';
+import Filter from "./filter";
 
 const typeColorMap = {
   normal: "#4A5568",
@@ -34,7 +34,7 @@ const Card = ({ searchQuery }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const { savedPokemon, savePokemon } = usePokemonContext();
   const [aliasInput, setAliasInput] = useState("");
-  const [selectedType, setSelectedType] = useState('all');
+  const [selectedType, setSelectedType] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +57,7 @@ const Card = ({ searchQuery }) => {
     );
 
     let filteredByType = filteredPokemon;
-    if (selectedType !== 'all') {
+    if (selectedType !== "all") {
       filteredByType = filteredByType.filter((pokemon) =>
         pokemon.types.some((type) => type.type.name === selectedType)
       );
@@ -81,14 +81,18 @@ const Card = ({ searchQuery }) => {
 
   const handleSavePokemon = () => {
     const aliasValue = aliasInput.trim();
+
     if (aliasValue) {
-      const savedData = { ...selectedPokemon, alias: aliasValue };
-      savePokemon(savedData);
-      document.getElementById("my_modal_2").close();
-      setAliasInput("");
-    } else {
-      // console.error('Alias cannot be empty');
-      document.getElementById("my_modal_2").close();
+      const isAliasExist = savedPokemon.some(
+        (pokemon) => pokemon.alias === aliasValue
+      );
+
+      if (!isAliasExist) {
+        const savedData = { ...selectedPokemon, alias: aliasValue };
+        savePokemon(savedData);
+        document.getElementById("my_modal_2").close();
+        setAliasInput("");
+      }
     }
   };
 
@@ -97,7 +101,6 @@ const Card = ({ searchQuery }) => {
       <div className="px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid gap-4">
         <Filter onChange={setSelectedType} />
       </div>
-
 
       <div className="flex flex-wrap justify-center mx-20">
         {visiblePokemon.map((content, i) => (
@@ -144,7 +147,7 @@ const Card = ({ searchQuery }) => {
               <dialog id="my_modal_2" className="modal">
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">
-                    Give a nickname to Pokemon! 
+                    Give a nickname to Pokemon!
                   </h3>
                   <input
                     type="text"
@@ -155,8 +158,8 @@ const Card = ({ searchQuery }) => {
                     value={aliasInput}
                     onChange={(e) => setAliasInput(e.target.value)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault(); 
+                      if (e.key === "Enter") {
+                        e.preventDefault();
                         handleSavePokemon();
                       }
                     }}
@@ -174,7 +177,6 @@ const Card = ({ searchQuery }) => {
                   <button></button>
                 </form>
               </dialog>
-
             </div>
           </div>
         ))}
