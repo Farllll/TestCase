@@ -12,9 +12,9 @@ export const PokemonProvider = ({ children }) => {
     setSavedPokemon((prevSavedPokemon) => [...prevSavedPokemon, pokemon]);
   };
 
-  const deletePokemon = (pokemonId) => {
+  const deletePokemon = (pokemonAlias) => {
     setSavedPokemon((prevSavedPokemon) =>
-      prevSavedPokemon.filter((pokemon) => pokemon.id !== pokemonId)
+      prevSavedPokemon.filter((pokemon) => pokemon.alias !== pokemonAlias)
     );
   };
 

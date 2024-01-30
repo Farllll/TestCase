@@ -82,7 +82,7 @@ const CardSave = () => {
               </ul>
               <button
                 className="btn bg-[#f55464] hover:bg-[#a83944] text-white"
-                onClick={() => handleDelete(content.id)}
+                onClick={() => handleDelete(content.alias)}
               >
                 Delete
               </button>
