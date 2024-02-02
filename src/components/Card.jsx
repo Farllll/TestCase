@@ -35,6 +35,7 @@ const Card = ({ searchQuery }) => {
   const { savedPokemon, savePokemon } = usePokemonContext();
   const [aliasInput, setAliasInput] = useState("");
   const [selectedType, setSelectedType] = useState("all");
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,18 +53,21 @@ const Card = ({ searchQuery }) => {
   }, [visiblePokemonCount]);
 
   useEffect(() => {
-    const filteredPokemon = pokemonData.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    let filteredByType = filteredPokemon;
-    if (selectedType !== "all") {
-      filteredByType = filteredByType.filter((pokemon) =>
-        pokemon.types.some((type) => type.type.name === selectedType)
+    // Periksa apakah pokemonData sudah ada sebelum mengatur visiblePokemon
+    if (pokemonData.length > 0) {
+      const filteredPokemon = pokemonData.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-    }
 
-    setVisiblePokemon(filteredByType.slice(0, visiblePokemonCount));
+      let filteredByType = filteredPokemon;
+      if (selectedType !== "all") {
+        filteredByType = filteredByType.filter((pokemon) =>
+          pokemon.types.some((type) => type.type.name === selectedType)
+        );
+      }
+
+      setVisiblePokemon(filteredByType.slice(0, visiblePokemonCount));
+    }
   }, [searchQuery, pokemonData, visiblePokemonCount, selectedType]);
 
   const loadMorePokemon = () => {
@@ -103,7 +107,8 @@ const Card = ({ searchQuery }) => {
       </div>
 
       <div className="flex flex-wrap justify-center mx-20">
-        {visiblePokemon.map((content, i) => (
+        {visiblePokemon && 
+          visiblePokemon.map((content, i) => (
           <div key={i} className="card w-72 bg-base-100 shadow-xl m-4">
             <figure>
               <img

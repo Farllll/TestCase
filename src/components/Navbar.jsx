@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -41,7 +51,7 @@ const Navbar = () => {
                 <Link
                   to="/"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Home
                 </Link>
@@ -50,7 +60,7 @@ const Navbar = () => {
                 <Link
                   to="/saved"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Saved
                 </Link>
@@ -65,12 +75,12 @@ const Navbar = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-white shadow-md">
+        <ul className={`menu p-4 w-80 min-h-full bg-white shadow-md ${isMenuOpen ? 'open' : ''}`}>
           <li>
             <Link
               to="/"
               className="text-black hover:bg-[#f55464]"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               Home
             </Link>
@@ -79,7 +89,7 @@ const Navbar = () => {
             <Link
               to="/saved"
               className="text-black hover:bg-[#f55464]"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               Saved
             </Link>
